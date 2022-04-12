@@ -1,6 +1,6 @@
 # quitanda
-
-A new Flutter application.
+App realizado através do curso:
+https://www.startto.dev/courses/flutterUI/player
 
 ## Getting Started
 
