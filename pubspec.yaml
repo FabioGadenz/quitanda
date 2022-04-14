@@ -41,6 +41,7 @@ dependencies:
   qr_flutter: ^4.0.0
   add_to_cart_animation: ^0.0.7
   fluttertoast: ^8.0.9
+  get: ^4.6.1
 
 
 dev_dependencies:
