@@ -1,5 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:quitanda/src/config/custom_colors.dart';
 import 'package:quitanda/src/pages/base/base_screen.dart';
@@ -171,10 +172,11 @@ class SignInScreen extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(18)),
                               side: BorderSide(width: 2, color: Colors.green)),
                           onPressed: () {
-                            Navigator.of(context)
-                                .push(MaterialPageRoute(builder: (rota) {
-                              return SignUpScreen();
-                            }));
+                            Get.toNamed('/SignUp');
+                            // Navigator.of(context)
+                            //     .push(MaterialPageRoute(builder: (rota) {
+                            //   return SignUpScreen();
+                            // }));
                           },
                           child: const Text(
                             "Criar conta",

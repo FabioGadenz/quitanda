@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:quitanda/src/pages/auth/sign_up_screen.dart';
+import 'package:quitanda/src/pages/home/home_tab.dart';
 
 import 'src/pages/auth/sign_in_screen.dart';
 
@@ -15,6 +18,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+
+      initialRoute: '/Signin',
+      getPages: [
+        GetPage(name: '/Signin', page: () => SignInScreen()),
+        GetPage(name: '/SignUp', page:() => SignUpScreen()),
+        GetPage(name: '/HomeTab', page: () => HomeTab()),
+      ],
+
       title: 'Quitanda',
       theme: ThemeData(
 
@@ -23,7 +34,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white70
       ),
       debugShowCheckedModeBanner: false,
-      home:  SignInScreen(),
+      //home:  SignInScreen(),
     );
   }
 }
