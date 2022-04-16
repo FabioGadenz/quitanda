@@ -6,11 +6,13 @@ import 'package:quitanda/src/config/custom_colors.dart';
 import 'package:quitanda/src/pages/base/base_screen.dart';
 
 import '../widgets/custom_text_field.dart';
-import 'sign_up_screen.dart';
 
 class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
+
     final size = MediaQuery.of(context)
         .size; //informando o tamanho da tela para a variavel size. Essa variavel vai ser colcoda dentro da altura do ziedBOX
 
@@ -68,7 +70,6 @@ class SignInScreen extends StatelessWidget {
                             FadeAnimatedText('Grãos'),
                             FadeAnimatedText('Temperos'),
                             FadeAnimatedText('Cereais'),
-
                           ],
                           onTap: () {},
                         ),
@@ -105,6 +106,7 @@ class SignInScreen extends StatelessWidget {
                     CustomTextField(
                       icon: Icons.email,
                       label: 'Email',
+                      controller: emailController,
                     ),
                     //senha
                     CustomTextField(
@@ -112,13 +114,17 @@ class SignInScreen extends StatelessWidget {
                       label: 'Password',
                       isSecret: true,
                       isObscure: true,
+                      controller: passwordController,
                     ),
                     //Botao de entrar
                     SizedBox(
                         height: 50,
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.of(context).pushReplacement(//pushREPLACEMENT  ele substitui a tela anterior após se logar
+                            print(emailController.text);
+                            print(passwordController.text);
+                            Navigator.of(context).pushReplacement(
+                                //pushREPLACEMENT  ele substitui a tela anterior após se logar
                                 MaterialPageRoute(builder: (r) {
                               return BaseScreen();
                             }));

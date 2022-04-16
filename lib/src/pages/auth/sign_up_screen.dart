@@ -13,15 +13,19 @@ class SignUpScreen extends StatelessWidget {
 //Criando mascara para o campo CPF
     final cpfFormatter = MaskTextInputFormatter(
       mask: '###.###.###-##',
-          filter: {'#' : RegExp(r'[0-9]')},
+      filter: {'#': RegExp(r'[0-9]')},
     );
     //criando mascara para campo celular
     final phoneFormatter = MaskTextInputFormatter(
-      mask: '(##) # ####-####', filter: {'#': RegExp(r'[0-9]')},
-      );
+      mask: '(##) # ####-####',
+      filter: {'#': RegExp(r'[0-9]')},
+    );
 
-
-
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
+    TextEditingController nameController = TextEditingController();
+    TextEditingController phoneController = TextEditingController();
+    TextEditingController cpfController = TextEditingController();
 
     return Scaffold(
       backgroundColor: CustomColors.customPrimaryGreen,
@@ -76,6 +80,7 @@ class SignUpScreen extends StatelessWidget {
                         CustomTextField(
                           icon: Icons.email,
                           label: 'Email',
+                          controller: emailController,
                         ),
                         //senha
                         CustomTextField(
@@ -83,20 +88,24 @@ class SignUpScreen extends StatelessWidget {
                           label: 'Password',
                           isSecret: true,
                           isObscure: true,
+                          controller: passwordController,
                         ),
                         CustomTextField(
                           icon: Icons.person,
                           label: 'Nome',
+                          controller: nameController,
                         ),
                         CustomTextField(
                           icon: Icons.phone,
                           label: 'Celular',
                           inputFormatters: [phoneFormatter],
+                          controller: phoneController,
                         ),
                         CustomTextField(
                           icon: Icons.web_sharp,
                           label: 'CPF',
                           inputFormatters: [cpfFormatter],
+                          controller: cpfController,
                         ),
                         SizedBox(
                             height: 50,
@@ -105,7 +114,9 @@ class SignUpScreen extends StatelessWidget {
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(18))),
-                                onPressed: () {},
+                                onPressed: () {
+                                  print(nameController.text);
+                                },
                                 child: Text(
                                   'cadastrar usuários',
                                   style: TextStyle(fontSize: 18),

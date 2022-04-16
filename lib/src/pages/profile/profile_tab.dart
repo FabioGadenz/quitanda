@@ -13,6 +13,10 @@ class ProfileTab extends StatefulWidget {
 class _ProfileTabState extends State<ProfileTab> {
   @override
   Widget build(BuildContext context) {
+    TextEditingController emailController = TextEditingController();
+    TextEditingController nameController = TextEditingController();
+    TextEditingController phoneController = TextEditingController();
+    TextEditingController cpfController = TextEditingController();
     return Scaffold(
       appBar: AppBar(
         title: Text('Perfil do usuário'),
@@ -31,6 +35,7 @@ class _ProfileTabState extends State<ProfileTab> {
             initialValueTextForm: appData.user.email,
             icon: Icons.email,
             label: 'Email',
+            controller: emailController,
           ),
           //Nome
           CustomTextField(
@@ -38,6 +43,7 @@ class _ProfileTabState extends State<ProfileTab> {
             initialValueTextForm: appData.user.name,
             icon: Icons.person,
             label: 'Nome',
+            controller: nameController,
           ),
           //Celular
           CustomTextField(
@@ -45,6 +51,7 @@ class _ProfileTabState extends State<ProfileTab> {
             initialValueTextForm: appData.user.celular,
             icon: Icons.phone,
             label: 'Celular',
+            controller: phoneController,
           ),
           //CPF
           CustomTextField(
@@ -54,6 +61,7 @@ class _ProfileTabState extends State<ProfileTab> {
             label: 'CPF',
             isSecret: true,
             isObscure: true,
+            controller: cpfController,
           ),
           //Botao atualziar senha
 
@@ -79,11 +87,16 @@ class _ProfileTabState extends State<ProfileTab> {
   //criando função para aprensetar o Dialog para atualziar senha
 
   Future<bool?> updatePassword() {
+    TextEditingController currentPasswordController = TextEditingController();
+    TextEditingController newPasswordController = TextEditingController();
+    TextEditingController confirmPasswordController = TextEditingController();
+
     return showDialog(
         context: context,
         builder: (c) {
           return Dialog(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             child: Stack(
               children: [
                 Padding(
@@ -99,8 +112,8 @@ class _ProfileTabState extends State<ProfileTab> {
                         child: Text(
                           "Atualização de senha",
                           textAlign: TextAlign.center,
-                          style:
-                              TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                       ),
                       //Campo senha atual
@@ -109,6 +122,7 @@ class _ProfileTabState extends State<ProfileTab> {
                         label: 'Senha atual',
                         isObscure: true,
                         isSecret: true,
+                        controller: currentPasswordController,
                       ),
                       //Campo nova senha
                       CustomTextField(
@@ -116,31 +130,37 @@ class _ProfileTabState extends State<ProfileTab> {
                         label: 'Nova Senha',
                         isSecret: true,
                         isObscure: true,
+                        controller: newPasswordController,
                       ),
                       //Campo confirmar nova senha
                       CustomTextField(
                         icon: Icons.lock_open_outlined,
-                        label: 'Confirmar mova senha',
+                        label: 'Confirmar nova senha',
                         isSecret: true,
                         isObscure: true,
+                        controller: confirmPasswordController,
                       ),
                       //Botao para confirmar
                       SizedBox(
                           height: 45,
                           child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
-                              onPressed: (){}, child: Text("Atualizar")))
+                              style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20))),
+                              onPressed: () {},
+                              child: Text("Atualizar")))
                     ],
                   ),
                 ),
-                
                 Positioned(
                     top: 5,
                     right: 5,
-                    child: IconButton(onPressed: (){
-                      Navigator.of(context).pop();
-                    },
-                      icon: Icon(Icons.close),))
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      icon: Icon(Icons.close),
+                    ))
               ],
             ),
           );
