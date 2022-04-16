@@ -8,8 +8,10 @@ class CustomTextField extends StatefulWidget {
   final bool isSecret;
   bool isObscure;
   final List<TextInputFormatter>? inputFormatters;
-  final String? initialValueTextForm; //Caso nao for passado o sinal de "?" indica que é null
+  final String?
+      initialValueTextForm; //Caso nao for passado o sinal de "?" indica que é null
   final bool readOnlyTxtForm;
+  final TextEditingController controller;
 
   CustomTextField({
     Key? key,
@@ -20,6 +22,7 @@ class CustomTextField extends StatefulWidget {
     this.inputFormatters,
     this.initialValueTextForm,
     this.readOnlyTxtForm = false,
+    required this.controller,
   }) : super(key: key);
 
   @override
@@ -33,8 +36,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
       padding: const EdgeInsets.only(bottom: 15),
       child: TextFormField(
         readOnly: widget.readOnlyTxtForm,
+        controller: widget.controller,
 
-        initialValue: widget.initialValueTextForm,//isso vai indicar o que sera mostrado inicialmente no TextFormField
+        initialValue: widget
+            .initialValueTextForm, //isso vai indicar o que sera mostrado inicialmente no TextFormField
         inputFormatters: widget.inputFormatters,
         obscureText: widget.isObscure,
         decoration: InputDecoration(
@@ -48,7 +53,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                         widget.isObscure = !widget.isObscure;
                       });
                     },
-                //se obscure for true, mostra icon de olho, caso contrario  icon(esconde olho)
+                    //se obscure for true, mostra icon de olho, caso contrario  icon(esconde olho)
                     icon: widget.isObscure
                         ? Icon(Icons.visibility)
                         : Icon(Icons.visibility_off))
