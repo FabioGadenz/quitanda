@@ -4,8 +4,10 @@ import 'package:quitanda/src/config/custom_colors.dart';
 import 'package:quitanda/src/models/cart_item_model.dart';
 import 'package:quitanda/src/pages/cart/components/cart_tile.dart';
 import 'package:quitanda/src/pages/widgets/payment_dialog.dart';
+import 'package:quitanda/src/services/snackbar_service.dart';
 import 'package:quitanda/src/services/utils_services.dart';
 import 'package:quitanda/src/config/app_data.dart' as appData;
+
 
 //=================================================
 //TELA DO CARRINHO
@@ -16,12 +18,14 @@ class CartTab extends StatefulWidget {
 }
 
 class _CartTabState extends State<CartTab> {
-  final UtilServices utilServices = UtilServices();
+   final UtilServices utilServices = UtilServices();
+   final SnackBarServices snackBarServices = SnackBarServices();
 
   void removeItemFromCart(CartItemModel cartItem) {
     setState(() {
       appData.cartItems.remove(cartItem);
-      utilServices.showToast(message: "Item ${cartItem.item.itemName} removido");
+      //utilServices.showToast(message: "Item ${cartItem.item.itemName} removido");
+      snackBarServices.snackBarSuccess(message: "Item ${cartItem.item.itemName} removido do carrinho");
     });
   }
 
@@ -92,7 +96,7 @@ class _CartTabState extends State<CartTab> {
                     onPressed: () async {
                       //criando função
                       bool? result = await showOrderConfirmation(); //bool?  resulta, pq ele esta esperando um resultado false/ou true
-                      if (result ?? false)//se result verdadeiro, ele segue, ?? se for nulo ele será inidicado como falso
+                      if (result ?? false)//se result verdadeiro, ele segue, ?? se for nulo ele será indicado como falso
                         {
 
                         showDialog(context: context, builder: (_){//_nao usa _//
@@ -101,7 +105,10 @@ class _CartTabState extends State<CartTab> {
                         },
                         );
 
-                        } else {utilServices.showToast(message: 'Pedido nao finalizado', isError: true);}
+                        } else {
+                        //utilServices.showToast(message: 'Pedido nao finalizado', isError: true);
+                      snackBarServices.snackBarError(message: 'Pedido nao finalizado', title: 'ERRO');
+                      }
                     },
                     child: const Text(
                       'Concluir Pedido',

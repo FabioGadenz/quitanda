@@ -5,6 +5,7 @@ import 'package:quitanda/src/pages/auth/sign_up_screen.dart';
 import 'package:quitanda/src/pages/home/home_tab.dart';
 
 import 'src/pages/auth/sign_in_screen.dart';
+import 'src/routes/route_getx.dart';
 
 
 void main() {
@@ -19,12 +20,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
 
-      initialRoute: '/Signin',
-      getPages: [
-        GetPage(name: '/Signin', page: () => SignInScreen()),
-        GetPage(name: '/SignUp', page:() => SignUpScreen()),
-        GetPage(name: '/HomeTab', page: () => HomeTab()),
-      ],
+      initialRoute: RoutesGetx.signInScreen,
+      getPages: RoutesGetx.routes,
+      // [
+      //   GetPage(name: '/Signin', page: () => SignInScreen()),
+      //   GetPage(name: '/SignUp', page:() => SignUpScreen()),
+      //   GetPage(name: '/HomeTab', page: () => HomeTab()),
+      // ],
 
       title: 'Quitanda',
       theme: ThemeData(

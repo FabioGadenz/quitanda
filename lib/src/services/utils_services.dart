@@ -25,18 +25,18 @@ class UtilServices{
     return dateFormat.format(dateTime);
   }
 
-//criando metodo TOAST
-void showToast({required String message, bool isError =  false}){
-
-  Fluttertoast.showToast(
-      msg: message,
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.TOP,
-      timeInSecForIosWeb: 1,
-      backgroundColor: isError ? Colors.red : Colors.white,
-      textColor: Colors.black,
-      fontSize: 16.0);
-}
+//criando metodo TOAST, serve para  uma barrinho de avisos
+// void showToast({required String message, bool isError =  false}){
+//
+//   Fluttertoast.showToast(
+//       msg: message,
+//       toastLength: Toast.LENGTH_SHORT,
+//       gravity: ToastGravity.TOP,
+//       timeInSecForIosWeb: 1,
+//       backgroundColor: isError ? Colors.red : Colors.white,
+//       textColor: Colors.black,
+//       fontSize: 16.0);
+// }
 
 
 

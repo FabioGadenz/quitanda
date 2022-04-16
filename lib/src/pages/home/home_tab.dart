@@ -3,11 +3,12 @@ import 'package:add_to_cart_animation/add_to_cart_icon.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:quitanda/src/config/app_data.dart'
     as app_data; // variavel app_data para chamar a outra tela
 import 'package:quitanda/src/config/custom_colors.dart';
 import 'package:quitanda/src/pages/home/components/item_tile.dart';
+import 'package:quitanda/src/services/snackbar_service.dart';
 import 'package:quitanda/src/services/utils_services.dart';
 
 import 'components/category_tile.dart';
@@ -34,6 +35,7 @@ class _HomeTabState extends State<HomeTab> {
   }
 
   final UtilServices utilServices = UtilServices();
+  final SnackBarServices snackBarServices = SnackBarServices();
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +47,11 @@ class _HomeTabState extends State<HomeTab> {
         elevation: 0,
         title: GestureDetector( //para chamar o TOAST
            onTap: (){
-             utilServices.showToast(message: "Mensagem do showToast", isError: true);
+             //utilServices.showToast(message: "Mensagem do showToast", isError: false);
+
+              snackBarServices.snackBarSuccess(message:'sucesso');
+              snackBarServices.snackBarError(message: "deu merda");
+
 
         },
           child: Text.rich(TextSpan(style: TextStyle(fontSize: 30), children: [
